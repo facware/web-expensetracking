@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://web-expense-tracking.facware.com/sitemap-index.xml

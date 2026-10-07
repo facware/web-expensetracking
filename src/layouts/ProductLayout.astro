@@ -1,0 +1,132 @@
+---
+// ProductLayout.astro — standalone layout for product pages (no facware header,
+// footer, cookie banner, chat widget, WhatsApp, or analytics scripts).
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogDescription?: string;
+  noindex?: boolean;
+  showChrome?: boolean;
+  currentPage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalURL = Astro.url.href,
+  ogImage = 'https://web-expense-tracking.facware.com/assets/images/products/expense-tracking/MainLogo-512x512.png',
+  ogDescription = description,
+  noindex = false,
+  showChrome = true,
+  currentPage = '',
+} = Astro.props;
+
+const APP_URL = 'https://expense-tracking.facware.com';
+const PORTAL_URL = 'https://web-expense-tracking.facware.com';
+const SITE_URL = 'https://facware.com';
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={ogDescription}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:site_name" content="Facware">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={ogDescription}>
+  <meta name="twitter:image" content={ogImage}>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/products/expense-tracking/MainLogo-16x16.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/assets/images/products/expense-tracking/MainLogo-apple-touch-180x180.png">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome (served from public/assets/) -->
+  <link rel="stylesheet" href="/assets/css/vendor/fontawesome-all.min.css">
+
+  <!-- Page-specific head additions -->
+  <slot name="head" />
+
+  <!-- Critical above-fold CSS — inlined to eliminate render-blocking -->
+  <style is:inline>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:#1a1a2e;background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+    .container{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:2px solid transparent;line-height:1;white-space:nowrap;transition:.22s ease}
+    .btn-primary{background:#086AD8;color:#fff;border-color:#086AD8}
+    .btn-primary:hover{background:#065bb8;border-color:#065bb8;transform:translateY(-1px);color:#fff}
+    .btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+    .btn-outline-white:hover{background:rgba(255,255,255,.12)}
+    .btn-lg{padding:17px 36px;font-size:16px}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  {showChrome && <header class="site-header">
+    <div class="container site-header-inner">
+      <a href="/index.html" class="site-brand" aria-label="ExpenseTracking home">
+        <img src="/assets/images/products/expense-tracking/MainLogo-48x48.png" alt="" width="36" height="36">
+        <span>ExpenseTracking</span>
+        <small>by Facware</small>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/index.html" class:list={{ 'is-current': currentPage === 'home' }}>Home</a>
+        <a href="/privacy-policy.html" class:list={{ 'is-current': currentPage === 'privacy' }}>Privacy</a>
+        <a href="/terms-of-service.html" class:list={{ 'is-current': currentPage === 'terms' }}>Terms</a>
+        <a href="/security.html" class:list={{ 'is-current': currentPage === 'security' }}>Security</a>
+        <a href="/support.html" class:list={{ 'is-current': currentPage === 'support' }}>Support</a>
+        <a href={APP_URL} class="btn btn-primary site-nav-cta" target="_blank" rel="noopener noreferrer">Open the app <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </nav>
+    </div>
+  </header>}
+  <main id="main-content">
+    <slot />
+  </main>
+  {showChrome && <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <div class="site-footer-brand">
+        <img src="/assets/images/products/expense-tracking/MainLogo-48x48.png" alt="" width="32" height="32">
+        <span>ExpenseTracking</span>
+        <small>by Facware</small>
+      </div>
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <a href="/index.html">Home</a>
+        <a href={APP_URL} target="_blank" rel="noopener noreferrer">Open the app</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="/security.html">Security</a>
+        <a href="/support.html">Support</a>
+        <a href={SITE_URL} target="_blank" rel="noopener noreferrer">Facware</a>
+      </nav>
+      <p>© {new Date().getFullYear()} Facware · <a href={PORTAL_URL}>ExpenseTracking product portal</a></p>
+    </div>
+  </footer>}
+</body>
+</html>

@@ -1,0 +1,41 @@
+---
+import ProductLayout from '../layouts/ProductLayout.astro';
+const updated = 'October 7, 2026';
+---
+<ProductLayout title="Privacy Policy — ExpenseTracking | Facware" description="How ExpenseTracking handles local app data, optional Google Drive backup, and website information." canonicalURL="https://web-expense-tracking.facware.com/privacy-policy.html" currentPage="privacy">
+  <article class="legal-page">
+    <div class="container legal-container">
+      <p class="section-eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="legal-meta">Effective and last updated: {updated}</p>
+      <p>Facware (“Facware”, “we”, “us”, or “our”) publishes ExpenseTracking, an offline-first personal finance progressive web application. This policy explains what information is handled by the ExpenseTracking website and application, including the optional Google Drive backup feature.</p>
+
+      <h2>1. Information handled by ExpenseTracking</h2>
+      <p>When you use the application locally, transactions, budgets, accounts, vehicle records, preferences, and reports are stored in your browser’s local storage technologies, including IndexedDB. The application does not require an account for local use. You are responsible for keeping your device and local backups secure.</p>
+      <p>If you choose to use Google Drive backup or restore, ExpenseTracking requests access to the Google Drive data needed for that feature. The app uses that access to create, read, update, or restore your ExpenseTracking backup. It does not use Google Drive data for advertising, profiling, or unrelated services.</p>
+
+      <h2>2. Google user data</h2>
+      <p>Google authentication and Drive access are optional. The exact permission shown by Google depends on the OAuth scopes configured for the application. We aim to request only the minimum permission required. ExpenseTracking does not sell Google user data, transfer it to advertising platforms, or use it to determine creditworthiness.</p>
+      <p>Google handles authentication and its own account data under the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>. You can review or revoke ExpenseTracking’s access from your Google Account security settings. Revoking access may stop backup and restore until you authorize it again.</p>
+
+      <h2>3. Website information</h2>
+      <p>This static information portal does not intentionally collect transaction data. If you contact us by email, we receive the information you include, such as your email address, message, and any diagnostic details you choose to provide. We use it to respond to your request, investigate support issues, and protect the service.</p>
+
+      <h2>4. Sharing and service providers</h2>
+      <p>We do not sell personal information. We share information only when needed to operate the service, respond to you, comply with law, protect rights and safety, or when you expressly direct us to do so. Google Drive is used only when you enable the optional integration. This site currently does not intentionally use advertising cookies, analytics, chat widgets, or third-party tracking scripts.</p>
+
+      <h2>5. Retention and deletion</h2>
+      <p>Local application data remains on your device until you delete it, clear the application storage, uninstall the PWA, or replace it with a backup. Drive backup files remain in your Google Drive until you delete them. To request deletion of information sent to Facware through support, email <a href="mailto:contact@facware.com">contact@facware.com</a> with enough information for us to identify the request.</p>
+
+      <h2>6. Security</h2>
+      <p>We use HTTPS for the public website and design the application around local-first storage and user-controlled exports. No internet storage system is risk-free, and we cannot guarantee recovery of data lost through device failure, browser clearing, mistaken deletion, or an unavailable third-party service. See our <a href="/security.html">Security page</a> for practical guidance and reporting instructions.</p>
+
+      <h2>7. Children’s privacy</h2>
+      <p>ExpenseTracking is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided information to Facware, contact us so we can review and delete it where appropriate.</p>
+
+      <h2>8. Changes and contact</h2>
+      <p>We may update this policy when the application, integrations, or legal requirements change. We will update the effective date and publish the revised policy at this URL. Questions and privacy requests can be sent to <a href="mailto:contact@facware.com">contact@facware.com</a>. Facware is based in Chihuahua, Chihuahua, Mexico.</p>
+      <p class="legal-note">This product policy supplements the general <a href="https://www.facware.com/privacy-policy.html" target="_blank" rel="noopener noreferrer">Facware Privacy Policy</a> where applicable.</p>
+    </div>
+  </article>
+</ProductLayout>
