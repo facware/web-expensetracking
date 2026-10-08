@@ -37,6 +37,8 @@ The GitHub repository is `facware/web-expensetracking`, and the configured custo
 domain is `web-expense-tracking.facware.com`.
 
 In GitHub repository settings, enable Pages with **GitHub Actions** as the source.
+Do not select **Deploy from a branch**, because that invokes GitHub's Jekyll
+publisher and cannot parse Astro page frontmatter.
 At the DNS provider, create a CNAME record for `web-expense-tracking` pointing to
 the GitHub Pages hostname for the repository/organization, then enable HTTPS after
 the certificate becomes available.
