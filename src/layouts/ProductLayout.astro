@@ -2,6 +2,8 @@
 // ProductLayout.astro — standalone layout for product pages (no facware header,
 // footer, cookie banner, chat widget, WhatsApp, or analytics scripts).
 import '../styles/global.css';
+import packageJson from '../../package.json';
+import ProductHeader from '../components/ProductHeader.astro';
 
 interface Props {
   title: string;
@@ -11,7 +13,6 @@ interface Props {
   ogDescription?: string;
   noindex?: boolean;
   showChrome?: boolean;
-  currentPage?: string;
 }
 
 const {
@@ -22,7 +23,6 @@ const {
   ogDescription = description,
   noindex = false,
   showChrome = true,
-  currentPage = '',
 } = Astro.props;
 
 const APP_URL = 'https://expense-tracking.facware.com';
@@ -89,23 +89,7 @@ const SITE_URL = 'https://facware.com';
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  {showChrome && <header class="site-header">
-    <div class="container site-header-inner">
-      <a href="/index.html" class="site-brand" aria-label="ExpenseTracking home">
-        <img src="/assets/images/products/expense-tracking/MainLogo-48x48.png" alt="" width="36" height="36">
-        <span>ExpenseTracking</span>
-        <small>by Facware</small>
-      </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/index.html" class:list={{ 'is-current': currentPage === 'home' }}>Home</a>
-        <a href="/privacy-policy.html" class:list={{ 'is-current': currentPage === 'privacy' }}>Privacy</a>
-        <a href="/terms-of-service.html" class:list={{ 'is-current': currentPage === 'terms' }}>Terms</a>
-        <a href="/security.html" class:list={{ 'is-current': currentPage === 'security' }}>Security</a>
-        <a href="/support.html" class:list={{ 'is-current': currentPage === 'support' }}>Support</a>
-        <a href={APP_URL} class="btn btn-primary site-nav-cta" target="_blank" rel="noopener noreferrer">Open the app <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-      </nav>
-    </div>
-  </header>}
+  {showChrome && <ProductHeader />}
   <main id="main-content">
     <slot />
   </main>
@@ -125,7 +109,7 @@ const SITE_URL = 'https://facware.com';
         <a href="/support.html">Support</a>
         <a href={SITE_URL} target="_blank" rel="noopener noreferrer">Facware</a>
       </nav>
-      <p>© {new Date().getFullYear()} Facware · <a href={PORTAL_URL}>ExpenseTracking product portal</a></p>
+      <p>© {new Date().getFullYear()} Facware · <a href={PORTAL_URL}>ExpenseTracking product portal</a> · Version {packageJson.version}</p>
     </div>
   </footer>}
 </body>
