@@ -1,5 +1,7 @@
 ---
 import ProductLayout from '../layouts/ProductLayout.astro';
+import ProductHeader from '../components/ProductHeader.astro';
+import packageJson from '../../package.json';
 
 const APP_URL = 'https://expense-tracking.facware.com';
 const GITHUB_URL = 'https://github.com/lreb/account-tracker';
@@ -29,20 +31,7 @@ const currentYear = new Date().getFullYear();
     }
   </script>
 
-  <!-- Product top bar: cross-link back to the Facware main site -->
-  <div class="et-topbar">
-    <div class="container et-topbar-inner">
-      <a href={SITE_URL} class="et-topbar-back" aria-label="Back to Facware main site">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Facware
-      </a>
-      <div class="et-topbar-brand">
-        <img class="et-brand-image" src="/assets/images/products/expense-tracking/MainLogo-48x48.png" alt="" width="30" height="30">
-        <span>ExpenseTracking</span>
-        <span class="et-topbar-by">by Facware</span>
-      </div>
-      <a href={APP_URL} class="btn btn-primary et-topbar-cta" target="_blank" rel="noopener noreferrer">Open the app <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-    </div>
-  </div>
+  <ProductHeader />
 
   <!-- HERO -->
   <section class="et-hero" aria-labelledby="et-hero-heading">
@@ -193,20 +182,20 @@ const currentYear = new Date().getFullYear();
 
       <div class="et-gallery">
         <figure class="et-shot et-shot-wide">
-          <img src="/assets/images/products/expense-tracking/screenshot-dashboard.png" alt="ExpenseTracking dashboard overview" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="et-shot-caption"><span>Dashboard overview</span><small>Screenshot slot: screenshot-dashboard.png</small></figcaption>
+          <img src="/assets/images/products/expense-tracking/screenshot-dashboard-1920x1080.png" alt="ExpenseTracking dashboard overview" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="et-shot-caption"><span>Dashboard overview</span><small>All finance information</small></figcaption>
         </figure>
         <figure class="et-shot">
-          <img src="/assets/images/products/expense-tracking/screenshot-transactions.png" alt="ExpenseTracking transaction log" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="et-shot-caption"><span>Transaction log</span><small>screenshot-transactions.png</small></figcaption>
+          <img src="/assets/images/products/expense-tracking/screenshot-transactions-1080x1920.png" alt="ExpenseTracking transaction log" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="et-shot-caption"><span>Transaction log</span><small>Full transaction history</small></figcaption>
         </figure>
         <figure class="et-shot">
-          <img src="/assets/images/products/expense-tracking/screenshot-budgets.png" alt="ExpenseTracking budgets" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="et-shot-caption"><span>Budgets</span><small>screenshot-budgets.png</small></figcaption>
+          <img src="/assets/images/products/expense-tracking/screenshot-budgets-1080x1920.png" alt="ExpenseTracking budgets" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="et-shot-caption"><span>Budgets</span><small>Manage your spending</small></figcaption>
         </figure>
         <figure class="et-shot">
-          <img src="/assets/images/products/expense-tracking/screenshot-vehicles.png" alt="ExpenseTracking vehicle costs" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="et-shot-caption"><span>Vehicle costs</span><small>screenshot-vehicles.png</small></figcaption>
+          <img src="/assets/images/products/expense-tracking/screenshot-vehicles-1080x1920.png" alt="ExpenseTracking vehicle costs" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="et-shot-caption"><span>Vehicle costs</span><small>Track fuel and maintenance</small></figcaption>
         </figure>
       </div>
     </div>
@@ -286,8 +275,8 @@ const currentYear = new Date().getFullYear();
         <a href={APP_URL} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
           Open the app <i class="fas fa-arrow-right" aria-hidden="true"></i>
         </a>
-        <a href={SITE_URL} class="btn btn-outline-white btn-lg">
-          <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Facware
+        <a href={SITE_URL} class="btn btn-outline-white btn-lg" target="_blank">
+          Go to Facware
         </a>
       </div>
     </div>
@@ -299,10 +288,10 @@ const currentYear = new Date().getFullYear();
       <div class="et-footer-brand">
         <img class="et-brand-image" src="/assets/images/products/expense-tracking/MainLogo-48x48.png" alt="" width="30" height="30">
         <span>ExpenseTracking</span>
-        <span class="et-topbar-by">by Facware</span>
+        <span class="et-footer-by">by Facware</span>
       </div>
       <nav class="et-footer-nav" aria-label="Footer — product links">
-        <a href={SITE_URL}>Back to Facware</a>
+        <a href={SITE_URL} target="_blank">Go to Facware</a>
         <a href={APP_URL} target="_blank" rel="noopener noreferrer">Open the app</a>
         <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">View on GitHub</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
@@ -310,23 +299,13 @@ const currentYear = new Date().getFullYear();
         <a href="/security.html">Security</a>
         <a href="/support.html">Support</a>
       </nav>
-      <p class="et-footer-copy">&copy; {currentYear} Facware. ExpenseTracking is a free personal finance PWA by <a href={SITE_URL}>Facware</a>.</p>
+      <p class="et-footer-copy">&copy; {currentYear} Facware. ExpenseTracking is a free personal finance PWA by <a href={SITE_URL} target="_blank">Facware</a>. Version {packageJson.version}</p>
     </div>
   </footer>
 
   <style is:inline>
-    .et-topbar{background:#0f1230;border-bottom:1px solid rgba(255,255,255,.08)}
-    .et-topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
-    .et-topbar-back{color:#9fb3d9;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
-    .et-topbar-back:hover{color:#fff}
-    .et-topbar-brand{color:#fff;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
     .et-brand-image{display:block;border-radius:8px;object-fit:contain}
-    .et-topbar-by{color:#7c8db8;font-weight:500;font-size:12px}
-    .et-topbar-cta{padding:10px 18px;font-size:14px}
-    @media(max-width:640px){
-      .et-topbar-back span,.et-topbar-by{display:none}
-      .et-topbar-cta{font-size:13px;padding:9px 14px}
-    }
+    .et-footer-by{color:#7c8db8;font-weight:500;font-size:12px}
 
     .et-hero{background:#0f1230;color:#fff;padding:clamp(48px,8vw,96px) 0 clamp(72px,10vw,120px);position:relative;overflow:hidden}
     .et-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 0%,rgba(8,106,216,.35),transparent 60%),radial-gradient(500px 320px at 10% 100%,rgba(79,124,255,.22),transparent 60%)}
